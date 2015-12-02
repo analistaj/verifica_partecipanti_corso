@@ -1,6 +1,6 @@
 <div class="form-group">
-	{!! Form::label('first name', 'Name') !!}
-	{!! Form::text('first name', null, ['class' => 'form-control']) !!}
+	{!! Form::label('first_name', 'Name') !!}
+	{!! Form::text('first_name', null, ['class' => 'form-control']) !!}
 </div>
 <div class="form-group">
 	{!! Form::label('surname', 'Surname') !!}
@@ -15,11 +15,11 @@
 	@endif
 </div>
 <div class="form-group">
-	{!! Form::label('phone number', 'Phone number') !!}
-	{!! Form::text('phone number', null, ['class' => 'form-control']) !!}
+	{!! Form::label('phone_number', 'Phone number') !!}
+	{!! Form::text('phone_number', null, ['class' => 'form-control']) !!}
 </div>
 <div class="form-group">
-	{!! Form::label('address', 'Adress') !!}
+	{!! Form::label('address', 'Address') !!}
 	{!! Form::text('address', null, ['class' => 'form-control']) !!}
 </div>
 <div class="form-group">

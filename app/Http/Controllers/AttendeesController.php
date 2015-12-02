@@ -8,9 +8,10 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AttendeeRequest;
 use App\Attendee;
+use Illuminate\Http\JsonResponse;
 
 class AttendeesController extends Controller
-{
+{	
     /**
      * Display a listing of the resource.
      *
@@ -44,15 +45,23 @@ class AttendeesController extends Controller
      */
     public function store(AttendeeRequest $request)
     {
-        $input = $request->all();
-		$attendee = Attendee::create([
-            'first name' => $input['first name'],
+    	$attendee = Attendee::create($request->all());
+    	
+        /*
+         avevo scritto a mano il codice seguente prendendolo da user,
+         ma è meglio usare la riga sopra, è più essenziale e pulita ed evita errori
+         
+          $input = $request->all();
+		  $attendee = Attendee::create([
+            'first_name' => $input['first_name'],
             'surname' => $input['surname'],
             'email' => $input ['email'],
-			'phone number'=> ['phone number'],
-			'adress'=> $input ['adress'],
-		    'country'=>input ['country'],
-        ]);
+			'phone_number'=> ['phone_number'],
+			'address'=> $input ['address'],
+		    'country'=>$input ['country'],
+        ]);*/
+		
+		
 		
 		if ($request->ajax() || $request->wantsJson()) {
     		return new JsonResponse($attendee);
@@ -69,7 +78,7 @@ class AttendeesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Attendee $attendee)
     {
         return view('attendees.show', compact('attendee'));
     }
@@ -80,7 +89,7 @@ class AttendeesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Attendee $attendee)
     {
         return view('attendees.edit', compact('attendee'));
     }
@@ -92,22 +101,26 @@ class AttendeesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(AttendeeRequest $request, $id)
+    public function update(AttendeeRequest $request, Attendee $attendee)
     {
     $input = $request->all();
-		$user->update([
-            'first name' => $input['first name'],
+		$attendee->update([
+            'first_name' => $input['first_name'],
             'surname' => $input['surname'],
 		    'email' => $input['email'],
-		    'phone number'=> ['phone number'],
-			'adress'=> $input ['adress'],
-			'country'=>input ['country'],	
+		    'phone_number'=> $input['phone_number'],
+			'address'=> $input ['address'],
+			'country'=>$input ['country'],	
         ]);
 		
 		
 		if ($request->ajax() || $request->wantsJson()) {
     		return new JsonResponse($attendee);
     	}
+		
+		flash()->success('salvato con successo!');
+		
+		return redirect('attendees');
     }
 
     /**
@@ -116,8 +129,12 @@ class AttendeesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        //
+    public function destroy(Attendee $attendee)
+   {
+        $attendee->delete();
+        if ($request->ajax() || $request->wantsJson()) {
+        	return new JsonResponse($user);
+        }
+        return redirect('attendees');
     }
 }

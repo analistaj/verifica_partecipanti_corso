@@ -14,11 +14,11 @@ class CreateAttendeesTable extends Migration
     {
         Schema::create('attendees', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('first name');
+            $table->string('first_name');
             $table->string('surname');
             $table->string('email');
-            $table->integer('phone number');
-            $table->string('adress');
+            $table->string('phone_number');
+            $table->string('address');
             $table->string('city');
             $table->string('country');
             $table->timestamps();

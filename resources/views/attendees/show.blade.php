@@ -1,15 +1,18 @@
 @extends('app')
 
 @section('title')
-{{$attendee->first name, surname}}
+{{$attendee->first_name}}{{$attendee->surname}}
 @stop
 
 @section('content')
-<h1>{{$attendee->first name, surname}}</h1>
+<h1>{{$attendee->first_name}}{{$attendee->surname}}</h1>
 <ul>
-	<li>{{$attendee->email}}</li>
-	<li>{{$attendee->id}}</li>
-	<li>{{$attendee->address}}</li>
-	<li>{{$attendee->address}}</li>
+	  <li>{{$attendee->first_name}}</li>
+	  <li>{{$attendee->surname}}</li>
+	  <li>{{$attendee->email}}</li>
+	  <li>{{$attendee->id}}</li>
+	  <li>{{$attendee->phone_number}}</li>
+	  <li>{{$attendee->address}}</li>
+	  <li>{{$attendee->country}}</li>
 </ul>
 @stop

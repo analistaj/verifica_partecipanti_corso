@@ -1,12 +1,12 @@
 @extends('app')
 
-@section('Attendees private dates')
+@section('title')
 Please, insert your date here :)
 @stop
 
-@section('dates')
+@section('content')
 {!! Form::model($attendees = new \App\Attendee, array('action' => 'AttendeesController@index')) !!}
-	@include('attendee.form', ['submitButtonText' => 'Save', 'create' => true])
+	@include('attendees.form', ['submitButtonText' => 'Save', 'create' => true])
 {!! Form::close() !!}
 
 @include('errors.list')

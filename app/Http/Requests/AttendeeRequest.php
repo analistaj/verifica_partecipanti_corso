@@ -24,11 +24,11 @@ class AttendeeRequest extends Request
     public function rules()
     {
         return [
-			'first name' => ['required', 'min:2', 'max:100'],
+			'first_name' => ['required', 'min:2', 'max:100'],
             'surname' => ['required', 'min:2', 'max:100'],
-            'email' => ['required', 'email', 'unique:users' . ($this->method() == 'POST' ? '' : (',email,' . $this->route('users')->id))],
-			'phone number' => ['required', 'min:10', 'max:30'],
-        	'adress' => [],
+            'email' => ['required', 'email', 'unique:attendees' . ($this->method() == 'POST' ? '' : (',email,' . $this->route('attendees')->id))],
+			'phone_number' => ['required', 'min:10', 'max:30'],
+        	'address' => [],
         	'country' => [],
              ];
     }

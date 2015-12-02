@@ -24,7 +24,9 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot(Router $router)
     {
-        //
+    	$router->bind('attendees', function($id) {
+    		return \App\Attendee::where('id', $id)->firstOrFail();
+    	});
 
         parent::boot($router);
     }
